@@ -24,7 +24,6 @@ $(document).ready(function() {
 
 function fetch(data) {
   $('#d1').html('');
-  console.log(data);
   for (var i = 0; i < data.length; i++) {
     if (data[i] != '') {
       var str = JSON.parse(data[i]);
@@ -50,6 +49,7 @@ function request() {
     },
     error: function(error) {
       console.error('chatterbox: Failed to fetch messages', error);
+      console.error('ERROR : ', error.responseText);
     }
   })
 
@@ -57,7 +57,6 @@ function request() {
 
 
 function send(message) {
-  console.log(message);
   $.ajax({
     url: 'http://127.0.0.1:3000/message',
     type: 'POST',
@@ -66,7 +65,7 @@ function send(message) {
     //contentType: 'application/json',
     success: function(data) {
       console.log('data send');
-      console.log(data);
+      console.log('Report from the server : ' + data);
       request();
     },
     error: function(error) {
